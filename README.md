@@ -17,8 +17,6 @@ Technology Stack
 
     PostgreSQL: Each microservice uses its own PostgreSQL database to store service-specific data. This ensures that the services are independent and can scale as needed.
 
-    Docker: Each microservice is containerized using Docker to ensure ease of deployment and scaling. Separate Dockerfiles are maintained for each service, allowing them to be deployed in isolated environments.
-
     HTTPX: For communication between microservices. For example, the Payment Service uses HTTPX to verify order details with the Order Service before processing a payment.
 
     Alembic: Used for managing database migrations, ensuring that changes to the database schema are versioned and applied correctly across environments.
@@ -55,11 +53,6 @@ Steps to Run
 Clone the repository:
 
     git clone https://github.com/yourusername/microservices-project.git
-    
-
-Build and start the services using Docker:
-
-    docker-compose up --build
 
 Each microservice will be available at its respective port. For example:
 
