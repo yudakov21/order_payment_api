@@ -52,19 +52,19 @@ Prerequisites
 
 Steps to Run
 
-    Clone the repository:
+Clone the repository:
 
+    git clone https://github.com/yourusername/microservices-project.git
+    
 
-git clone https://github.com/yourusername/microservices-project.git
-cd microservices-project
+Build and start the services using Docker:
 
-    Build and start the services using Docker:
+    docker-compose up --build
 
-docker-compose up --build
+Each microservice will be available at its respective port. For example:
 
-    Each microservice will be available at its respective port. For example:
-        User Service: http://localhost:8000
-        Order Service: http://localhost:8001
-        Payment Service: http://localhost:8002
+    User Service: http://localhost:8000
+    Order Service: http://localhost:8001
+    Payment Service: http://localhost:8002
 
 This README gives a detailed overview of your microservices architecture, technologies used, and how to set up the project. You can tweak it based on specific project needs or future improvements.
