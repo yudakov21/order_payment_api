@@ -43,11 +43,32 @@ If the order is found, the payment is processed. If not, a 404 error (order not 
 
 ***Design Patterns***: Patterns like Factory, Strategy, and Facade have been used to implement modular, scalable solutions.
 
-### Steps to Run
+### Installation and Setup Requirements
+
+To run the project, ensure you have:
+
+    Python 3.8 or higher
+    PostgreSQL or any supported database (SQLite, MySQL)
+    pip (Python package manager)
 
 Clone the repository:
 
-    git clone https://github.com/yourusername/microservices-project.git
+    git clone https://github.com/your_username/task-management-api.git
+    cd task-management-api
+
+Install the dependencies:
+
+    pip install -r requirements.txt
+
+Apply the migrations to create the database tables:
+
+    alembic upgrade head
+
+Running the Application
+
+Start the development server using Uvicorn:
+
+    uvicorn src.main:app --reload
 
 Each microservice will be available at its respective port. For example:
 
