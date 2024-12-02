@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.api.service import get_order
 from app.api.schemas import PaymentRequest
-from app.api.schemas import PaymentFacade 
+from app.api.payment_processor import PaymentFacade 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, insert
 from app.database import get_async_session
@@ -10,6 +10,7 @@ from app.api.models import payment
 router = APIRouter(
     prefix='/payments', tags=['Payments']
 )
+
 
 @router.post("/pay/")
 async def pay(payment_request: PaymentRequest, session: AsyncSession = Depends(get_async_session)):
@@ -27,6 +28,7 @@ async def pay(payment_request: PaymentRequest, session: AsyncSession = Depends(g
             query = insert(payment).values(**payment_request.dict())
             await session.execute(query)
             await session.commit()
+
             return {"message": "Payment processed",
                     "order": order}
         except Exception:
@@ -35,6 +37,7 @@ async def pay(payment_request: PaymentRequest, session: AsyncSession = Depends(g
                 'data': None,
                 'details': None,
             })    
+
 
 @router.get('/')
 async def get_specific_payments(id: int, session: AsyncSession = Depends(get_async_session)):
@@ -50,12 +53,7 @@ async def get_specific_payments(id: int, session: AsyncSession = Depends(get_asy
                 'data': pay_dict,
                 'details': None,
             }
-        else:
-            return {
-            'status': 'error',
-            'data': None,
-            'details': None,
-            }
+
     except Exception:
         raise HTTPException(status_code= 500, detail={
             'status': 'error',
